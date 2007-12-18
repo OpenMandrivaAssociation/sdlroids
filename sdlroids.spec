@@ -38,14 +38,15 @@ convert icons/%{name}-16x16.xpm $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
 convert icons/%{name}-32x32.xpm $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
 convert icons/%{name}-48x48.xpm $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
 
-%{__install} -d $RPM_BUILD_ROOT%{_menudir}
-%{__cat} <<EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}):command="%{_gamesbindir}/%{name}" \
-                icon=%{name}.png \
-                needs="x11" \
-                section="Amusement/Arcade" \
-                title="SDLRoids"\
-                longtitle="%{Summary}"
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
+[Desktop Entry]
+Type=Application
+Exec=%{_gamesbindir}/%{name}                
+Icon=%{name}                                
+Categories=Game;ArcadeGame;                
+Name=SDLRoids                
+Comment=%{Summary}
 EOF
 
 %post
@@ -64,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/%{name}.6*
 %dir %{_gamesdatadir}/%{name}
 %{_gamesdatadir}/%{name}/*
-%{_menudir}/%{name}
+%{_datadir}/applications/mandriva-%{name}.desktop
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
