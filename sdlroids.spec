@@ -12,6 +12,7 @@ Group:		Games/Arcade
 Source0:	%{name}-%{version}.tar.bz2
 URL:		http://eongames.com/games/sdlroids/
 Buildrequires:	SDL1.2-devel ImageMagick
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 SDLRoids is essentially an Asteroids clone, but with a few extra
