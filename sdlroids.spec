@@ -1,6 +1,6 @@
 %define	name	sdlroids
 %define	version	1.3.4
-%define	release	%mkrel 12
+%define	release	%mkrel 13
 %define	Summary	SDLRoids - an enhanced shoot-the-asteroids
 
 Summary:	%{Summary}
