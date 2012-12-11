@@ -1,18 +1,13 @@
-%define	name	sdlroids
-%define	version	1.3.4
-%define	release	%mkrel 13
-%define	Summary	SDLRoids - an enhanced shoot-the-asteroids
-
-Summary:	%{Summary}
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Summary:	SDLRoids - an enhanced shoot-the-asteroids
+Name:		sdlroids
+Version:	1.3.4
+Release:	14
 License:	GPL
 Group:		Games/Arcade
 Source0:	%{name}-%{version}.tar.bz2
 URL:		http://eongames.com/games/sdlroids/
-Buildrequires:	SDL1.2-devel imagemagick
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	pkgconfig(sdl)
+BuildRequires:	imagemagick
 
 %description
 SDLRoids is essentially an Asteroids clone, but with a few extra
@@ -25,44 +20,29 @@ of extra powerups  and that the shield behaves differently.
 %setup -q
 
 %build
-%configure	--bindir=%{_gamesbindir} \
+%configure --bindir=%{_gamesbindir} \
 		--datadir=%{_gamesdatadir} \
 		--disable-rpath
 %make
 
 %install
-%{__rm} -rf $RPM_BUILD_ROOT
-%makeinstall bindir=$RPM_BUILD_ROOT%{_gamesbindir} datadir=$RPM_BUILD_ROOT%{_gamesdatadir}
+%makeinstall bindir=%{buildroot}%{_gamesbindir} datadir=%{buildroot}%{_gamesdatadir}
 
-%{__install} -d $RPM_BUILD_ROOT{%{_liconsdir},%{_miconsdir}}
-convert icons/%{name}-16x16.xpm $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
-convert icons/%{name}-32x32.xpm $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
-convert icons/%{name}-48x48.xpm $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
+install -d %{buildroot}{%{_liconsdir},%{_miconsdir}}
+convert icons/%{name}-16x16.xpm %{buildroot}%{_miconsdir}/%{name}.png
+convert icons/%{name}-32x32.xpm %{buildroot}%{_iconsdir}/%{name}.png
+convert icons/%{name}-48x48.xpm %{buildroot}%{_liconsdir}/%{name}.png
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
-cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
+mkdir -p %{buildroot}%{_datadir}/applications/
+cat << EOF > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
 Type=Application
 Exec=%{_gamesbindir}/%{name}                
 Icon=%{name}                                
 Categories=Game;ArcadeGame;                
 Name=SDLRoids                
-Comment=%{Summary}
+Comment=SDLRoids - an enhanced shoot-the-asteroids
 EOF
-
-%if %mdkversion < 200900
-%post
-%update_menus
-%endif
-  
-%if %mdkversion < 200900
-%postun
-%clean_menus 
-%endif
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
