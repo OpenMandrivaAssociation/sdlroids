@@ -1,4 +1,4 @@
-Summary:	SDLRoids - an enhanced shoot-the-asteroids
+Summary:	- an enhanced shoot-the-asteroids
 Name:		sdlroids
 Version:	1.3.4
 Release:	14
