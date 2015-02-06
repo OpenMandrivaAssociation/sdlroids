@@ -1,7 +1,7 @@
 Summary:	An enhanced shoot-the-asteroids
 Name:		sdlroids
 Version:	1.3.4
-Release:	15
+Release:	16
 License:	GPL
 Group:		Games/Arcade
 Source0:	%{name}-%{version}.tar.bz2
