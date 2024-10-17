@@ -5,7 +5,7 @@ Release:	16
 License:	GPL
 Group:		Games/Arcade
 Source0:	%{name}-%{version}.tar.bz2
-URL:		http://eongames.com/games/sdlroids/
+URL:		https://eongames.com/games/sdlroids/
 BuildRequires:	pkgconfig(sdl)
 BuildRequires:	imagemagick
 
