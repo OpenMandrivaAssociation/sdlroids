@@ -6,6 +6,11 @@ License:	GPL
 Group:		Games/Arcade
 Source0:	%{name}-%{version}.tar.bz2
 URL:		https://eongames.com/games/sdlroids/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(sdl)
 BuildRequires:	imagemagick
 
